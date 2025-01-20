@@ -54,8 +54,13 @@ AccountListPage::AccountListPage(QWidget* parent) : QMainWindow(parent), ui(new 
 {
     ui->setupUi(this);
     ui->listView->setEmptyString(
-        tr("Welcome!\n"
-           "If you're new here, you can select the \"Add Microsoft\" button to link your Microsoft account."));
+//PrismCrack
+        tr("Welcome to PrismCrack!\n"
+"If you're new here, you can select the\n"
+"\"Add Offline\" button if you don't have Minecraft premium account\n"
+"or if you do own a Minecraft premium account select the\n"
+"\"Add Microsoft\" button to link your Microsoft account."));
+//PrismCrack		
     ui->listView->setEmptyMode(VersionListView::String);
     ui->listView->setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -141,6 +146,7 @@ void AccountListPage::on_actionAddMicrosoft_triggered()
 
 void AccountListPage::on_actionAddOffline_triggered()
 {
+/*//PrismCrack
     if (!m_accounts->anyAccountIsValid()) {
         QMessageBox::warning(this, tr("Error"),
                              tr("You must add a Microsoft account that owns Minecraft before you can add an offline account."
@@ -148,7 +154,7 @@ void AccountListPage::on_actionAddOffline_triggered()
                                 "If you have lost your account you can contact Microsoft for support."));
         return;
     }
-
+*///PrismCrack
     MinecraftAccountPtr account =
         OfflineLoginDialog::newAccount(this, tr("Please enter your desired username to add your offline account."));
 

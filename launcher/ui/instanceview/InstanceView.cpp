@@ -482,7 +482,7 @@ void InstanceView::paintEvent([[maybe_unused]] QPaintEvent* event)
 
     if (model()->rowCount() == 0) {
         painter.save();
-        QString emptyString = tr("Welcome!") + "\n" + tr("Click \"Add Instance\" to get started.");
+        QString emptyString = tr("Welcome to PrismCrack!") + "\n" + tr("Click \"Add Instance\" to get started.");//PrismCrack
 
         // calculate the rect for the overlay
         painter.setRenderHint(QPainter::Antialiasing, true);

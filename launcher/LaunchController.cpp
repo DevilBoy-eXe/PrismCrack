@@ -87,6 +87,7 @@ void LaunchController::decideAccount()
 
     // Find an account to use.
     auto accounts = APPLICATION->accounts();
+/*//PrismCrack	  
     if (accounts->count() <= 0 || !accounts->anyAccountIsValid()) {
         // Tell the user they need to log in at least one account in order to play.
         auto reply = CustomMessageBox::selectable(m_parentWidget, tr("No Accounts"),
@@ -104,6 +105,7 @@ void LaunchController::decideAccount()
             return;
         }
     }
+*///PrismCrack	 				 
 
     // Select the account to use. If the instance has a specific account set, that will be used. Otherwise, the default account will be used
     auto instanceAccountId = m_instance->settings()->get("InstanceAccountId").toString();
@@ -114,6 +116,7 @@ void LaunchController::decideAccount()
         m_accountToUse = accounts->at(instanceAccountIndex);
     }
 
+/*//PrismCrack	  
     if (!m_accountToUse) {
         // If no default account is set, ask the user which one to use.
         ProfileSelectDialog selectDialog(tr("Which account would you like to use?"), ProfileSelectDialog::GlobalDefaultCheckbox,
@@ -129,10 +132,14 @@ void LaunchController::decideAccount()
             accounts->setDefaultAccount(m_accountToUse);
         }
     }
+*///PrismCrack				 
 }
 
 bool LaunchController::askPlayDemo()
 {
+APPLICATION->ShowGlobalSettings(m_parentWidget, "accounts");//PrismCrack
+return false;
+/*//PrismCrack
     QMessageBox box(m_parentWidget);
     box.setWindowTitle(tr("Play demo?"));
     box.setText(
@@ -145,6 +152,7 @@ bool LaunchController::askPlayDemo()
 
     box.exec();
     return box.clickedButton() == demoButton;
+*///PrismCrack
 }
 
 QString LaunchController::askOfflineName(QString playerName, bool demo, bool& ok)
@@ -217,7 +225,7 @@ void LaunchController::login()
         tries++;
         m_session = std::make_shared<AuthSession>();
         m_session->wants_online = m_online;
-        m_session->demo = m_demo;
+        m_session->demo = false; //PrismCrack
         m_accountToUse->fillSession(m_session);
 
         // Launch immediately in true offline mode
